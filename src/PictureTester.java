@@ -1,3 +1,5 @@
+package src;
+
 import java.awt.Color;
 import java.util.ArrayList;
 
@@ -24,12 +26,12 @@ public class PictureTester {
 		 // testZeroBlue();
 		// testKeepOnlyBlue();
 		// testKeepOnlyRed();
-		testKeepOnlyGreen();
-		// testNegate();
-		// testGrayscale();
-		// testEdgeDetection();
+//		testKeepOnlyGreen();
+//		 testNegate();
+//		 testGrayscale();
+//		 testEdgeDetection();
 		// testFaceDetect();
-		// testFixUnderwater();
+		 testFixUnderwater();
 		// testMirrorVertical();
 		// testMirrorTemple();
 		// testMirrorArms();
@@ -52,7 +54,7 @@ public class PictureTester {
 	private static void testPixelate() {
 		// opens the image so that it can be manipulated
 
-		Picture beach = new Picture("beach.jpg");
+		Picture beach = new Picture("images/beach.jpg");
     beach.explore();// shows the picture in a window
 		beach.pixelate();
 
@@ -63,7 +65,7 @@ public class PictureTester {
 	private static void testQuads() {
 
 		// opens the image so that it can be manipulated
-		Picture mrH = new Picture("beach.jpg");
+		Picture mrH = new Picture("images/beach.jpg");
 		double sclF = MAX_WID / mrH.getWidth();
 		mrH = mrH.scale(sclF, sclF);
 		mrH.explore();// shows the picture in a window before
@@ -75,7 +77,7 @@ public class PictureTester {
 
 	private static void testDiagonal() {
 		// opens the image so that it can be manipulated
-		Picture mrH = new Picture("beach.jpg");
+		Picture mrH = new Picture("images/beach.jpg");
 		// Pictures taken on a phone tend to be very large
 		// sometimes too large for the Picture class
 		// so I have scaled the one's that are too big
@@ -94,7 +96,7 @@ public class PictureTester {
 	/** Method to test zeroBlue */
 	public static void testZeroBlue() {
 		// opens the image so that it can be manipulated
-		 Picture beach = new Picture("beach.jpg");
+		 Picture beach = new Picture("images/beach.jpg");
 		 beach.explore();// shows the picture in a window before
      
 
@@ -105,7 +107,7 @@ public class PictureTester {
 	private static void testKeepOnlyBlue() {
 		// should get a fairly blue pic
 		// this method will look a lot like testZeroBlue method
-		Picture beach = new Picture("beach.jpg");
+		Picture beach = new Picture("images/beach.jpg");
 		beach.explore();// shows the picture in a window
 		beach.keepOnlyBlue();
 		beach.explore();//shows a new picture with only blue hues
@@ -114,17 +116,16 @@ public class PictureTester {
 
 	private static void testKeepOnlyGreen() {
     // pretty obvious...
-    Picture beach = new Picture("beach.jpg");
+    Picture beach = new Picture("images/beach.jpg");
 		beach.explore();// shows the picture in a window
 		beach.keepOnlyGreen();
 		beach.explore();//shows a new picture with only blue hues
-		
 
 	}
 
 	private static void testKeepOnlyRed() {
 		// turns the pic quite red
-    Picture beach = new Picture("beach.jpg");
+    Picture beach = new Picture("images/beach.jpg");
     beach.explore();// shows the picture in a window
 		beach.keepOnlyRed();
 		beach.explore();//shows a new picture with only blue hues
@@ -136,7 +137,7 @@ public class PictureTester {
 	 * used often, we can write these algorithms in this class.
 	 */
 	private static void testNegate() {
-		Picture swan = new Picture("swan.jpg");
+		Picture swan = new Picture("images/swan.jpg");
 		// write this in Picture class
 		swan.negate();
 		swan.explore();
@@ -148,7 +149,7 @@ public class PictureTester {
 	 * to the Picture class.
 	 */
 	private static void testGrayscale() {
-		Picture swan = new Picture("swan.jpg");
+		Picture swan = new Picture("images/swan.jpg");
 		// write this method in Picture class
 		swan.grayScale();
 		swan.explore();
@@ -158,17 +159,17 @@ public class PictureTester {
 	/** Method to test edgeDetection */
 	public static void testEdgeDetection() {
 
-		Picture swan = new Picture("swan.jpg");
+		Picture swan = new Picture("images/swan.jpg");
 
 		// written in Picture class
 		swan.edgeDetection(10);// bigger number means fewer edges
 		swan.explore();
-		swan.write("swan outline.jpg");// writes the new picture to a new file
+		swan.write("images/swan outline.jpg");// writes the new picture to a new file
 	}
 
 	/** Method to test mirrorVertical */
 	public static void testMirrorVertical() {
-		Picture caterpillar = new Picture("caterpillar.jpg");
+		Picture caterpillar = new Picture("images/caterpillar.jpg");
 		caterpillar.explore();
 		// this should take the left-hand half of the picture and reflect it across
 		// the vertical midline.
@@ -178,7 +179,7 @@ public class PictureTester {
 
 	/** Method to test mirrorTemple */
 	public static void testMirrorTemple() {
-		Picture temple = new Picture("temple.jpg");
+		Picture temple = new Picture("images/temple.jpg");
 		temple.explore();
 		// This method makes a mirror image of a section of this picture
 		// If this picture is of the temple, it mirror images the top.
@@ -263,8 +264,8 @@ public class PictureTester {
 	 */
 	private static void testEncodeAndDecode() {
 
-		Picture moto = new Picture("blueMotorcycle.jpg"),
-		        message = new Picture("msg3.PNG");
+		Picture moto = new Picture("images/blueMotorcycle.jpg"),
+		        message = new Picture("images/msg3.PNG");
 		moto.explore();
 		message.explore();
 		
@@ -308,8 +309,8 @@ public class PictureTester {
 	 */
 
 	private static void testChromakey() {
-		Picture background = new Picture("butterfly1.jpg"), 
-		        foreground = new Picture("spidey.jpg");
+		Picture background = new Picture("images/butterfly1.jpg"),
+		        foreground = new Picture("images/spidey.jpg");
 
 		foreground = foreground.scale(.3, .3);
 		// foreground.copy(foreground, 0, 100);
@@ -365,7 +366,7 @@ public class PictureTester {
 	 * would be if the water were drained
 	 */
 	private static void testFixUnderwater() {
-		Picture pic = new Picture("water.jpg");
+		Picture pic = new Picture("images/water.jpg");
 		pic.explore();
 	}
 

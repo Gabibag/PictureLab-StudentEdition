@@ -1,3 +1,7 @@
+package src;
+
+import src.DigitalPicture;
+
 import java.awt.Color;
 
 /**

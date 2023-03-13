@@ -1,3 +1,5 @@
+package src;
+
 import java.awt.*;
 import java.awt.font.*;
 import java.awt.geom.*;
@@ -89,6 +91,16 @@ public class Picture extends SimplePicture
 	flip all the colors:  if color had red = 30, green = 100, blue = 200
 	negated color red = 225, green= 155, blue = 55  */
 	public void negate() {
+		Pixel[][] pixels = this.getPixels2D();
+		Pixel pixel;
+		for (Pixel[] value : pixels) {
+			for (int col = 0; col < pixels[0].length; col++) {
+				pixel = value[col];
+				pixel.setRed(255 - pixel.getRed());
+				pixel.setGreen(255 - pixel.getGreen());
+				pixel.setBlue(255 - pixel.getBlue());
+			}
+		}
 		
 		
 	}
@@ -98,7 +110,18 @@ public class Picture extends SimplePicture
 	   and blue components and set each component to that average
 	*/
 	public void grayScale() {
-		
+		Pixel[][] pixels = this.getPixels2D();
+		for (Pixel[] pixel : pixels) {
+			for (int j = 0; j < pixel.length; j++) {
+				int avg = (pixel[j].getBlue() + pixel[j].getRed() + pixel[j].getGreen()) / 3;
+				pixel[j].setBlue(avg);
+				pixel[j].setGreen(avg);
+				pixel[j].setRed(avg);
+			}
+
+		}
+
+
 	}
 
   /** pixelates an image
@@ -236,17 +259,40 @@ public class Picture extends SimplePicture
 	 */
 	public void edgeDetection(int edgeDist)
 	{
-		Pixel leftPixel = null;// this pixel will always be the one to 
-		// the left of rightPixel.  If this Pixel
-		// is far enough away (based on edgeDist), then
-		// leftPixel is set to Color black, else, white
 
-		Pixel rightPixel = null;// this Pixel doesn't change value, it is just
 		// used as a reference for comparing with leftPixel
 
 		Pixel[][] pixels = this.getPixels2D();// gets the 2D array of Pixel
 		// Big hint, the Pixel class has a method called colorDistance(Color) which
 		// returns the distance the input Color is from this Pixel's Color
+
+		Pixel leftPixel;// this pixel will always be the one to
+		Pixel rightPixel;// this Pixel doesn't change value, it is just
+		// the left of rightPixel.  If this Pixel
+		// is far enough away (based on edgeDist), then
+		// leftPixel is set to Color black, else, white
+		for (int p = 0; p < pixels.length-1; p++) {
+			for (int i = 1; i < pixels[p].length-1; i++) {
+				leftPixel = pixels[p][i];
+				rightPixel = pixels[p][i+1];
+				if ((leftPixel.getRed() - rightPixel.getRed() <= edgeDist ||
+					 leftPixel.getRed() + rightPixel.getRed() <= edgeDist) &&
+					(leftPixel.getGreen() - rightPixel.getGreen() <= edgeDist ||
+					 leftPixel.getGreen() + rightPixel.getGreen() <= edgeDist) &&
+					(leftPixel.getBlue() + rightPixel.getBlue() <= edgeDist ||
+					 leftPixel.getBlue() - rightPixel.getBlue() <= edgeDist)){
+					leftPixel.setRed(255);
+					leftPixel.setGreen(255);
+					leftPixel.setBlue(255);
+				}else {
+					leftPixel.setBlue(0);
+					leftPixel.setRed(0);
+					leftPixel.setGreen(0);
+				}
+			}
+
+
+		}
 
 	}
 
