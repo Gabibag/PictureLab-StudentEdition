@@ -24,14 +24,14 @@ public class PictureTester {
 		 * 
 		 */
 		 // testZeroBlue();
-		// testKeepOnlyBlue();
-		// testKeepOnlyRed();
+//		 testKeepOnlyBlue();
+//		 testKeepOnlyRed();
 //		testKeepOnlyGreen();
-//		 testNegate();
-//		 testGrayscale();
+		 testNegate();
+		 testGrayscale();
 //		 testEdgeDetection();
 		// testFaceDetect();
-		 testFixUnderwater();
+//		 testFixUnderwater();
 		// testMirrorVertical();
 		// testMirrorTemple();
 		// testMirrorArms();
@@ -367,6 +367,7 @@ public class PictureTester {
 	 */
 	private static void testFixUnderwater() {
 		Picture pic = new Picture("images/water.jpg");
+		pic.fixUnderwater();
 		pic.explore();
 	}
 

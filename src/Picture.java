@@ -246,7 +246,6 @@ public class Picture extends SimplePicture
 		this.write("collage.jpg");
 	}
 
-
 	/** Method to show large changes in color 
 	 * This method traverses this picture and changes to pixels to 
 	 * black and white, depending on the color to each pixel's right.
@@ -305,7 +304,19 @@ public class Picture extends SimplePicture
 		PictureTester.main(args);
 	}
 
-	
-	
 
+	public void fixUnderwater() {
+		Pixel[][] pixels = this.getPixels2D();
+		Pixel pixel = null;
+		for (int row = 0; row < pixels.length; row++) {
+			for (int col = 0; col < pixels[0].length; col++) {
+				if (pixels[row][col].getBlue() < 200) {
+					pixel = pixels[row][col];
+					pixel.setRed(pixel.getRed() + 25);
+					pixel.setBlue(pixel.getBlue() - 100);
+					pixel.setGreen(pixel.getGreen() - 100);
+				}
+			}
+		}
+	}
 } // this } is the end of class Picture, put all new methods before this
